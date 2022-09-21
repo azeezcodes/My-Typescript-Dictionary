@@ -307,6 +307,14 @@ let jungle = double<number,number>([23, 45], [83, 33])
 let alfa = double(["aa", "ee"], ["apple", "mango"])
 let gok = double<number,string>([56, 85], ["year", "old"])
 console.log(gok);
+// ----------------------------------------- if the other side will be null so assign a data type to it
+let black = <one, two=string>(x: one[], y: two[]) => {
+   return `${x} is with ${y}`;
+};
+let jun = black<number, number>([23, 45], [83, 33]);
+let alf = black(["aa", "ee"], ["apple", "mango"]);
+let go = black<number | null>([56, 85], ["j","k"]);
+
 // -----------------------------------------generic 
 
 const makeFullName = (obj: { firstName: string; lastName: string }) => {
@@ -315,3 +323,21 @@ const makeFullName = (obj: { firstName: string; lastName: string }) => {
       fullName: obj.firstName + "" + obj.lastName,
    };
 };
+// ------------------------ extend generic in advance generic
+
+let hh = <T extends {firstname: string, lastname: string}>(obj: T) => {
+   return {
+      ...obj,
+      fullname : obj.firstname + '.' + obj.lastname
+   }
+}
+
+//---------------------------------------------------------------generic with interface
+
+interface Table<T> { 
+   boss: string;
+   positions: number;
+   data: T,
+}
+
+type TableworK = Table<string >;
